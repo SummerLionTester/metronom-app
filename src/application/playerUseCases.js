@@ -4,16 +4,16 @@ import { subscribeToDuration } from "./durationUseCases";
 import { subscribeToUpbeatSample } from "./sampleUseCases";
 import { subscribeToDownbeatSample } from "./sampleUseCases";
  
-export const Sequenser = class  {
+export const Sequencer = class  {
     #sequencer;
 
     constructor(sequencer) {
         this.#sequencer = sequencer;
-        subscribeToBeat(this.#sequencer.setBeat.bind(this));
-        subscribeToBpm(this.#sequencer.setBpm.bind(this));
-        subscribeToDuration(this.#sequencer.setDuration.bind(this));
-        subscribeToUpbeatSample(this.#sequencer.setUpbeatSample.bind(this));
-        subscribeToDownbeatSample(this.#sequencer.setDownbeatSample.bind(this));
+        subscribeToBeat(this.#sequencer.setBeat.bind(this), true);
+        subscribeToBpm(this.#sequencer.setBpm.bind(this), true);
+        subscribeToDuration(this.#sequencer.setDuration.bind(this), true);
+        subscribeToUpbeatSample(this.#sequencer.setUpbeatSample.bind(this), true);
+        subscribeToDownbeatSample(this.#sequencer.setDownbeatSample.bind(this), true);
     }
 
     play() {

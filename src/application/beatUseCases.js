@@ -9,6 +9,7 @@ const increaseBeat = (step) => beat.increaseValueBy(step);
 
 const decreaseBeat = (step) => beat.decreaseValueBy(step);
 
-const subscribeToBeat = (updateCb) => beat.subscribe(updateCb);
+const subscribeToBeat = (updateCb, isNeededInitialData) =>
+    beat.subscribe(updateCb, isNeededInitialData);
 
 export { setBeat, increaseBeat, decreaseBeat, subscribeToBeat };

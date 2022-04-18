@@ -44,7 +44,7 @@ export class MetronomEntity {
     }
 
     /**
-     * Set a  new value that,if validated, will replace the old value and notify subscribers
+     * Set a  new value that,if validated, will replace the old value and notify subscribers with it
      * @param {number=|string=} newValue - A new value to replace
      */
     setValue(newValue) {
@@ -58,8 +58,12 @@ export class MetronomEntity {
      * Entity change subscription function.
      * In case of changing the value of the entity, the callback passed when subscribing will be called
      * @param {requestCallback} cb - callback that will be called if the value of the entity changes
+     * @param {boolean} isNeededInitialData - If true, callback will be called immediately with current value
      */
-    subscribe(cb) {
+    subscribe(cb, isNeededInitialData) {
         this.#observer.subscribe(cb);
+        if (isNeededInitialData) {
+            this.#observer.notifyLastWith(this.#currentValue);
+        }
     }
 }

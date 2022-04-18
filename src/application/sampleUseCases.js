@@ -15,10 +15,11 @@ const setUpbeatSample = (value) => upbeatSample.setValue(value);
 
 const setDownbeatSample = (value) => downbeatSample.setValue(value);
 
-const subscribeToUpbeatSample = (updateCb) => upbeatSample.subscribe(updateCb);
+const subscribeToUpbeatSample = (updateCb, isNeededInitialData) =>
+    upbeatSample.subscribe(updateCb, isNeededInitialData);
 
-const subscribeToDownbeatSample = (updateCb) =>
-    downbeatSample.subscribe(updateCb);
+const subscribeToDownbeatSample = (updateCb, isNeededInitialData) =>
+    downbeatSample.subscribe(updateCb, isNeededInitialData);
 
 export {
     setUpbeatSample,

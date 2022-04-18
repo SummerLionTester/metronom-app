@@ -9,6 +9,7 @@ const increaseBpm = (step) => bpm.increaseValueBy(step);
 
 const decreaseBpm = (step) => bpm.decreaseValueBy(step);
 
-const subscribeToBpm = (updateCb) => bpm.subscribe(updateCb);
+const subscribeToBpm = (updateCb, isNeededInitialData) =>
+    bpm.subscribe(updateCb, isNeededInitialData);
 
 export { setBpm, increaseBpm, decreaseBpm, subscribeToBpm };

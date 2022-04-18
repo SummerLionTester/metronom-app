@@ -8,6 +8,7 @@ const duration = createDuration(
 
 const setDuration = (value) => duration.setValue(value);
 
-const subscribeToDuration = (updateCb) => duration.subscribe(updateCb);
+const subscribeToDuration = (updateCb, isNeededInitialData) =>
+    duration.subscribe(updateCb, isNeededInitialData);
 
 export { setDuration, subscribeToDuration };
