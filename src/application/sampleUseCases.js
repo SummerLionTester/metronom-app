@@ -2,12 +2,12 @@ import { createSample } from "../domain/sample/createSample";
 import { PROPS } from "../PROPS";
 
 const upbeatSample = createSample(
-    PROPS.SAMPLE.INITIAL_VALUE,
+    PROPS.SAMPLE.UPBEAT_INITIAL_VALUE,
     PROPS.SAMPLE.AVAILABLE
 );
 
 const downbeatSample = createSample(
-    PROPS.SAMPLE.INITIAL_VALUE,
+    PROPS.SAMPLE.DOWNBEAT_INITIAL_VALUE,
     PROPS.SAMPLE.AVAILABLE
 );
 

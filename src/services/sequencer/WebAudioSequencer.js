@@ -1,47 +1,51 @@
 import { Observer } from "../../lib/Observer";
+import { loadAudioAsBuffersMap } from "./loadAudioAsBuffersMap";
 
 export const WebAudioSequncer = class {
-    #sequence;
-    #beatIterator;
-    #bpm;
-    #duration;
-    #upbeatSample;
-    #downBeatSample;
+    #audio;
     #audioContext;
     #audioBufferMap;
     #observer;
     #source;
 
-    constructor(audioContext, audioBufferMap) {
+    constructor(audioContext, audio) {
+        this.#audio = audio;
         this.#audioContext = audioContext;
-        this.#audioBufferMap = audioBufferMap;
+        this.#audioBufferMap = null;
         this.#observer = new Observer();
-        this.#sequence = null;
-        this.#beatIterator = null;
-        this.#bpm = null;
-        this.#duration = null;
-        this.#upbeatSample = null;
-        this.#downBeatSample = null;
+        this.sequence = null;
+        this.beatIterator = null;
+        this.bpm = null;
+        this.duration = null;
+        this.upbeatSample = null;
+        this.downBeatSample = null;
         this.#source = null;
+    }
+
+    async loadAudio() {
+        this.#audioBufferMap = await loadAudioAsBuffersMap(
+            this.#audio,
+            this.#audioContext
+        );
     }
 
     play() {
         if (!this.isRunning()) {
             let nextStartTime = this.#audioContext.currentTime;
             const runSamples = () => {
-                const nextBeat = this.#beatIterator.next().value;
+                const nextBeat = this.beatIterator.next().value;
                 this.#source = this.#audioContext.createBufferSource();
-                    
+
                 this.#source.buffer = this.#audioBufferMap.get(
-                   nextBeat === "UPBEAT"
-                        ? this.#upbeatSample
-                        : this.#downBeatSample
+                    nextBeat === "UPBEAT"
+                        ? this.upbeatSample
+                        : this.downBeatSample
                 );
 
                 this.#source.connect(this.#audioContext.destination);
                 this.#source.start(nextStartTime);
                 this.#source.onended = runSamples;
-                nextStartTime += 60 / (this.#bpm * (this.#duration / 4));
+                nextStartTime += 60 / (this.bpm * (this.duration / 4));
 
                 this.#observer.notifyAllWith(this.isRunning());
             };
@@ -62,24 +66,24 @@ export const WebAudioSequncer = class {
     }
 
     setBeat(value) {
-        this.#sequence = createSequence(value);
-        this.#beatIterator = createSequenceIterator(this.#sequence);
+        this.sequence = createSequence(value);
+        this.beatIterator = createSequenceIterator(this.sequence);
     }
 
     setBpm(value) {
-        this.#bpm = value;
+        this.bpm = value;
     }
 
     setDuration(value) {
-        this.#duration = value;
+        this.duration = value;
     }
 
     setUpbeatSample(value) {
-        this.#upbeatSample = value;
+        this.upbeatSample = value;
     }
 
     setDownbeatSample(value) {
-        this.#downBeatSample = value;
+        this.downBeatSample = value;
     }
 
     subscribeToState(cb) {

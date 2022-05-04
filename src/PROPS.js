@@ -1,10 +1,10 @@
 export const PROPS = {
     BEAT: {
-        INITIAL_VALUE: 1,
-        RANGE: { from: 1, to: 12 }
+        INITIAL_VALUE: 4,
+        RANGE: { from: 1, to: 16 },
     },
     BPM: {
-        INITIAL_VALUE: 20,
+        INITIAL_VALUE: 120,
         RANGE: { from: 20, to: 240 },
     },
     DURATION: {
@@ -12,8 +12,9 @@ export const PROPS = {
         AVAILABLE: [1, 2, 4, 8, 16],
     },
     SAMPLE: {
-        INITIAL_VALUE: "claves",
-        AVAILABLE: ["claves", "drumstick", "bongo", "woodblock"]
+        AVAILABLE: ["claves", "drumstick", "bongo", "woodblock"],
+        UPBEAT_INITIAL_VALUE: "claves",
+        DOWNBEAT_INITIAL_VALUE: "drumstick",
     }
 };
 
