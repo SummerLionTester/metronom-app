@@ -13,13 +13,14 @@ import {
 } from "./application/sampleUseCases";
 import { PROPS } from "./PROPS";
 
-const App = ({ sequencer }) => {
+const App = ({ sequencer, storage }) => {
     useEffect(() => {
         const init = async () => {
             await sequencer.loadAudio();
+            await storage.loadPreset();
         };
         init();
-    }, [sequencer]);
+    }, [sequencer, storage]);
 
     return (
         <div className="App">
