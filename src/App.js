@@ -5,12 +5,6 @@ import { Bpm } from "./ui/components/Bpm";
 import { Beat } from "./ui/components/Beat";
 import { Duration } from "./ui/components/Duration";
 import { Sound } from "./ui/components/Sound";
-import {
-    setUpbeatSample,
-    subscribeToUpbeatSample,
-    subscribeToDownbeatSample,
-    setDownbeatSample,
-} from "./application/sampleUseCases";
 import { PROPS } from "./PROPS";
 
 const App = ({ sequencer, storage }) => {
