@@ -1,0 +1,7 @@
+export const ENTITIES = Object.freeze({
+    BEAT: "BEAT",
+    BPM: "BPM",
+    DURATION: "DURATION",
+    UPBEAT_SAMPLE: "UPBEAT_SAMPLE",
+    DOWNBEAT_SAMPLE: "DOWNBEAT_SAMPLE",
+});
