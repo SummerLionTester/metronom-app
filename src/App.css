@@ -1,26 +1,42 @@
-.form_radio_btn {
-	display: inline-block;
-	margin-right: 10px;
+@import '~antd/dist/antd.css';
+
+.ant-layout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-bottom: 1px solid black;
+    height: 13vh;
 }
 
-.form_radio_btn input[type=radio] {
-	display: none;
+
+.ant-form-item-label > label {
+    font-size: 1.3rem;
+}
+h1.ant-typography {
+    display: inline-block;
+    font-size: 2.5rem;
+}
+h3.ant-typography {
+    display: inline-block;
+    margin: 0 0 0 1rem;
+    color: grey;
+    font-size: 1.2rem;
 }
 
-.form_radio_btn label {
-	display: inline-block;
-	cursor: pointer;
-	padding: 0px 15px;
-	line-height: 34px;
-	border: 1px solid #999;
-	border-radius: 6px;
-	user-select: none;
+
+@media (max-width: 710px) {
+    h3.ant-typography {
+        display: none;
+    }
 }
 
-.form_radio_btn input[type=radio]:checked + label {
-	background: #ffe0a6;
-}
- 
-.form_radio_btn label:hover {
-	color: #666;
+@media (max-width: 480px) {
+    h1.ant-typography {
+        display: none;
+    }
+
+    .ant-layout-header {
+        justify-content: center;
+    }
 }

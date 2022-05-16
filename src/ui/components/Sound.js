@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
+import {Select, Typography} from 'antd';
 import {
     subscribeToUpbeatSample,
     setUpbeatSample,
     subscribeToDownbeatSample,
     setDownbeatSample,
 } from "../../application/sampleUseCases";
-export const Sound = ({ type, sampleNames }) => {
+
+const {Option} = Select;
+const {Title} = Typography;
+
+export const Sound = ({type, sampleNames}) => {
     let options;
     if (type === "upbeat") {
         options = {
@@ -28,23 +33,17 @@ export const Sound = ({ type, sampleNames }) => {
     }, [options]);
 
     return (
-        <div>
-            <span>{options.name + " " + value}</span>
-            <div>
-                <select
-                    className="no-outline"
-                    value={value}
-                    onChange={(e) => {
-                        options.setFn(e.target.value);
-                    }}
-                >
-                    {Object.values(sampleNames).map((name) => (
-                        <option key={name} value={name}>
-                            {name}
-                        </option>
-                    ))}
-                </select>
-            </div>
+        <div style={{width: "9rem"}}>
+            <Title level={4}>{options.name}</Title>
+            <Select style={{width: "8rem", fontSize: "1.2rem"}} value={value} onChange={(value) => {
+                options.setFn(value);
+            }}>
+                {Object.values(sampleNames).map((name) => (
+                    <Option style={{fontSize: "1.2rem"}} key={name}>
+                        {name}
+                    </Option>
+                ))}
+            </Select>
         </div>
     );
 };

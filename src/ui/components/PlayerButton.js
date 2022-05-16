@@ -1,6 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from "react";
+import {Button} from "antd";
+import {PlayCircleFilled, PauseCircleFilled} from "@ant-design/icons";
 
-export const PlayerButton = ({ sequencer }) => {
+export const PlayerButton = ({sequencer}) => {
     const [isRunning, setIsRunning] = useState(false);
     const buttonRef = useRef(null);
 
@@ -22,15 +24,18 @@ export const PlayerButton = ({ sequencer }) => {
     }, [sequencer]);
 
     return (
-        <div>
+        <div style={{margin: "1.2rem auto 1.5rem auto"}}>
             {isRunning ? (
-                <button ref={buttonRef} onClick={() => sequencer.stop()}>
-                    Stop
-                </button>
+                <Button ref={buttonRef} style={{width: "5rem", height: "3rem",display: 'inline-flex', justifyContent: 'center', alignItems: 'center'}}
+                        type="primary" shape="round"
+                        icon={<PauseCircleFilled style={{fontSize: '2rem', verticalAlign: 'middle'}}/>}
+                        onClick={() => sequencer.stop()}/>
+
             ) : (
-                <button ref={buttonRef} onClick={() => sequencer.play()}>
-                    Play
-                </button>
+                <Button ref={buttonRef} style={{width: "5rem", height: "3rem",display: 'inline-flex', justifyContent: 'center', alignItems: 'center'}}
+                        type="primary" shape="round"
+                        icon={<PlayCircleFilled style={{fontSize: '2rem', verticalAlign: 'middle'}}/>}
+                        onClick={() => sequencer.play()}/>
             )}
         </div>
     );
